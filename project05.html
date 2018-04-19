@@ -1,0 +1,546 @@
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="../standard.css" type="text/css">
+    <link rel="stylesheet" href="../cpp.css" type="text/css">
+    <title>Comp 431 Project</title>
+    <script type="text/javascript" src="/gfoust/sh/scripts/shCore.js"></script>
+    <script type="text/javascript" src="/gfoust/sh/scripts/shBrushJScript.js"></script>
+    <script type="text/javascript" src="/gfoust/sh/scripts/shBrushXml.js"></script>
+    <script type="text/javascript">
+      SyntaxHighlighter.defaults.gutter = false;
+      SyntaxHighlighter.all();
+    </script>
+    <link type="text/css" rel="stylesheet" href="/gfoust/sh/styles/shCore.css"/>
+    <link type="text/css" rel="stylesheet" href="/gfoust/sh/styles/shThemeFoust.css"/>
+    <style>
+      pre {
+          margin: 1ex;
+      }
+      .example h1 {
+          text-align: left;
+          margin: 0 0 1em 0;
+      }
+      .example h3 {
+          text-decoration: none;
+          margin: 0 0 1em 0;
+      }
+      .class-list table {
+          border-spacing: 0;
+      }
+      .class-list td {
+          padding: 1ex;
+          border-top: 1px solid #888;
+      }
+      .class-list td.link {
+          font-size:80%;
+          padding-left: 2ex;
+          padding-right: 2ex;
+      }
+      .example input[type="text"], .example input[type="number"], .example select {
+          width: 50ex;
+      }
+    </style>
+    <base target="_top" />
+  </head>
+  <body>
+    <p>
+      In this project we will extend extend our previous MEAN application (the
+      web services) to have an Angular front-end.
+    </p>
+    <h3>General Guidelines</h3>
+    <ul>
+      <li>Follow Angular conventions with regards to class design, files, and
+        naming.</li>
+      <li>Use Angular routing so that each page has its own URL, etc.</li>
+      <li>Use Angular form validation to disallow bad values and give helpful
+        error messages.</li>
+      <li>Use CSS to make your components look nice.  (Doesn't have to be
+        fancy, just neat and readable.)</li>
+      <li>When you are done, run the following command:
+        <pre>npm run clean:win</pre> or <pre>npm run clean:mac</pre>
+        Then zip up your project and submit it.
+      </li>
+    </ul>
+    <h3>Requirements</h3>
+    <ol class="spaced">
+      <li>
+        Your Angular application should be accessed at the
+        URL <code>/el</code>.  Make a &ldquo;home page&rdquo; with a simple
+        message and a link to our class management feature.
+        <div class="example">
+          <h1>Welcome to Easel Lite!</h1>
+          <ul>
+            <li><a href="#">Manage classes</a></li>
+          </ul>
+        </div>
+      </li>
+      <li>
+        Create a not-found component to use for any URLs invalid URLs in your
+        application.
+        <div class="example">
+          <h1>Not Found</h1>
+          <div>The requested resource could not be found:</div>
+          <pre>/el/invalid/path</pre>
+        </div>
+      </li>
+      <li>
+        The URL for the class management feature should
+        be <code>/el/classes</code>.  This page should list all classes,
+        sorted first by department, second by number.  For each class it
+        should provide a link to edit the class details and to edi the roster.
+        It should also provide a link to create a new class.
+        <div class="example class-list">
+          <h3>Class List</h3>
+
+          <table>
+            <tbody>
+              <tr>
+                <td>COMP</td>
+                <td>245</td>
+                <td>—</td>
+                <td>Data Structures</td>
+                <td class="link">
+                  <a href="#">Details</a>
+                </td>
+                <td class="link">
+                  <a href="#">Roster</a>
+                </td>
+              </tr><tr>
+                <td>COMP</td>
+                <td>250</td>
+                <td>—</td>
+                <td>Web Development I</td>
+                <td class="link">
+                  <a href="#">Details</a>
+                </td>
+                <td class="link">
+                  <a href="#">Roster</a>
+                </td>
+              </tr><tr>
+                <td>COMP</td>
+                <td>268</td>
+                <td>—</td>
+                <td>Computer Architecture</td>
+                <td class="link">
+                  <a href="#">Details</a>
+                </td>
+                <td class="link">
+                  <a href="#">Roster</a>
+                </td>
+              </tr><tr>
+                <td>COMP</td>
+                <td>336</td>
+                <td>—</td>
+                <td>Database</td>
+                <td class="link">
+                  <a href="#">Details</a>
+                </td>
+                <td class="link">
+                  <a href="#">Roster</a>
+                </td>
+              </tr><tr>
+                <td>COMP</td>
+                <td>345</td>
+                <td>—</td>
+                <td>Object-Oriented Programming</td>
+                <td class="link">
+                  <a href="#">Details</a>
+                </td>
+                <td class="link">
+                  <a href="#">Roster</a>
+                </td>
+              </tr><tr>
+                <td>COMP</td>
+                <td>431</td>
+                <td>—</td>
+                <td>Web Development II</td>
+                <td class="link">
+                  <a href="#">Details</a>
+                </td>
+                <td class="link">
+                  <a href="#">Roster</a>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="6">
+                  <a href="#">Create new class...</a>
+                </td>
+              </tr>
+          </tbody></table>
+        </div>
+      </li>
+      <li>
+        The URL for editing class details should
+        be <code>/el/classes/<var>classname</var></code>
+        where <var>classname</var> is the department (in lowercase letters)
+        and number.  Thus, the URL for the example below would
+        be <code>/el/classes/comp431</code>.  The page should contain a form
+        with inputs for the class department, number, and title, and a select
+        box for the teacher.  The select box should contain all teachers from
+        the database.  Do <em>not</em> hard-code this list; retrieve it from
+        the database.  At the bottom should be buttons labeled
+        &ldquo;Save,&rdquo; &ldquo;Cancel,&rdquo; and &ldquo;Delete&rdquo;
+        <div class="example">
+          <form onsubmit="return false">
+            <h3>Class Details</h3>
+            <table>
+              <tbody><tr>
+                  <td>Department:</td>
+                  <td>
+                    <input maxlength="4" minlength="4" name="department"
+                           required="" type="text" value="COMP"/>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Number:</td>
+                  <td>
+                    <input max="999" min="100" name="number" required=""
+                           type="number" value="431"/>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Title:</td>
+                  <td>
+                    <input name="title" required="" type="text"
+                           value="Web Development II"/>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Teacher:</td>
+                  <td>
+                    <select name="teacher" required="">
+                      <option>
+                        Tim Baird
+                      </option><option>
+                        Steve Baber
+                      </option><option>
+                        Scott Ragsdale
+                      </option><option>
+                        Frank McCown
+                      </option><option>
+                        Dana Steil
+                      </option><option selected>
+                        Gabriel Foust
+                      </option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2" style="text-align: right">
+                    <input style="margin-right: 3em;" value="Delete" type="button">
+                    <input value="Cancel" type="button">
+                    <input value="Save" disabled type="submit">
+                  </td>
+                </tr>
+            </tbody></table>
+          </form>
+        </div>
+        <ul>
+          <li>
+            If the user clicks &ldquo;Save&rdquo; then the current values
+            should saved to the database, and the application should navigate
+            to the <code>/el/classes</code> page.  The &ldquo;Save&rdquo;
+            button should be disabled if the form is pristine or invalid.
+          </li>
+          <li>
+            If the user clicks &ldquo;Cancel&rdquo;...
+            <ul>
+              <li>
+                ...and the form is pristine, then navigate to
+                the <code>el/classes</code> page.
+              </li>
+              <li>
+                ...and the form has been touched, then prompt the user to
+                confirm that the edits are to be discarded.  (You may simply
+                use <code>window.confirm</code>.)  If the user confirms, then
+                navigate to the <code>el/classes</code> page.  If the user
+                does not confirm, do nothing.
+              </li>
+            </ul>
+          </li>
+          <li>
+            If the user clicks &ldquo;Delete&rdquo; then prompt the user to
+            confirm that the class is to be deleted.  (You may simply
+            use <code>window.confirm</code>.)  If the user confirms, then
+            navigate to the <code>el/classes</code> page.  If the user does
+            not confirm, do nothing.
+          </li>
+        </ul>
+      </li>
+      <li>
+        The URL for creating a new class should
+        be <code>/el/new-class</code>.  The page should contain a form exactly
+        like the class details page except that it will be blank and will not
+        contain a &ldquo;Delete&rdquo; button.  The &ldquo;Cancel&rdquo; and
+        &ldquo;Save&rdquo; buttons should also behave the same, except that
+        the &ldquo;Save&rdquo; button will create a new class instead of
+        updating an existing one.
+        <div class="example">
+          <form onsubmit="return false">
+            <h3>New Class</h3>
+            <table>
+              <tbody><tr>
+                  <td>Department:</td>
+                  <td>
+                    <input maxlength="4" minlength="4" name="department"
+                           required="" type="text"/>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Number:</td>
+                  <td>
+                    <input max="999" min="100" name="number" required=""
+                           type="number"/>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Title:</td>
+                  <td>
+                    <input name="title" required="" type="text"/>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Teacher:</td>
+                  <td>
+                    <select name="teacher" required="">
+                      <option>
+                        Tim Baird
+                      </option><option>
+                        Steve Baber
+                      </option><option>
+                        Scott Ragsdale
+                      </option><option>
+                        Frank McCown
+                      </option><option>
+                        Dana Steil
+                      </option><option>
+                        Gabriel Foust
+                      </option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2" style="text-align: right">
+                    <input value="Cancel" type="button">
+                    <input value="Save" disabled type="submit">
+                  </td>
+                </tr>
+            </tbody></table>
+          </form>
+        </div>
+      </li>
+      <li>The URL for editing the class roster should
+        be <code>/el/rosters/<var>classname</var></code>
+        where <var>classname</var> is the department (in lowercase letters) and
+        number.  Thus, the URL for the example below would
+        be <code>/el/rosters/comp431</code>.  The page should contain a list
+        of all the students in the database.  Do <em>not</em> hard-code this
+        list; retrieve it from the database.  Each student should have a
+        checkbox next to it which should be checked if the student is in the
+        class.  You should use the student name as a label for the checkbox.
+        At the bottom should be buttons labeled &ldquo;Save&rdquo; and
+        &ldquo;Cancel&rdquo;.
+        <div class="example">
+          <form novalidate="">
+            <h3>Class Roster</h3>
+            <table>
+              <tr>
+                <td>
+                  <input id="5ad8a587b8659d211213cff2" type="checkbox" checked>
+                  <label for="5ad8a587b8659d211213cff2">Bryan Cuneo</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input id="5ad8a587b8659d211213cff3" type="checkbox" checked>
+                  <label for="5ad8a587b8659d211213cff3">Isaac Dryden</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input id="5ad8a587b8659d211213cff4" type="checkbox">
+                  <label for="5ad8a587b8659d211213cff4">Jon-Michael
+                    Fields</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input id="5ad8a587b8659d211213cff5" type="checkbox" checked>
+                  <label for="5ad8a587b8659d211213cff5">Maggie George</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input id="5ad8a587b8659d211213cff6" type="checkbox">
+                  <label for="5ad8a587b8659d211213cff6">David
+                    Gillespie</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input id="5ad8a587b8659d211213cff7" type="checkbox">
+                  <label for="5ad8a587b8659d211213cff7">Judah Goff</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input id="5ad8a587b8659d211213cff8" type="checkbox" checked>
+                  <label for="5ad8a587b8659d211213cff8">Madison
+                    Haskins</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input id="5ad8a587b8659d211213cff9" type="checkbox">
+                  <label for="5ad8a587b8659d211213cff9">Brandy Hudgins</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input id="5ad8a588b8659d211213cffa" type="checkbox" checked>
+                  <label for="5ad8a588b8659d211213cffa">Victor Iris Del
+                    Prado</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input id="5ad8a588b8659d211213cffb" type="checkbox" checked>
+                  <label for="5ad8a588b8659d211213cffb">Caleb Krise</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input id="5ad8a588b8659d211213cffc" type="checkbox" checked>
+                  <label for="5ad8a588b8659d211213cffc">Andrew Robison</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input id="5ad8a588b8659d211213cffd" type="checkbox">
+                  <label for="5ad8a588b8659d211213cffd">Jerred
+                    Shepherd</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input id="5ad8a588b8659d211213cffe" type="checkbox">
+                  <label for="5ad8a588b8659d211213cffe">Caleb Spann</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input id="5ad8a588b8659d211213cfff" type="checkbox" checked>
+                  <label for="5ad8a588b8659d211213cfff">Nicholas
+                    Terrill</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input id="5ad8a588b8659d211213d000" type="checkbox">
+                  <label for="5ad8a588b8659d211213d000">Joshua Toye</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input id="5ad8a588b8659d211213d001" type="checkbox" checked>
+                  <label for="5ad8a588b8659d211213d001">Jhoel Zuniga</label>
+                </td>
+              </tr>
+              <tr>
+                <td style="text-align:right">
+                  <input value="Cancel" type="button">
+                  <input value="Save" type="submit" disabled>
+                </td>
+              </tr>
+            </table>
+          </form>
+        </div>
+        <ul>
+          <li>
+            If the user clicks &ldquo;Save&rdquo; then the selected students
+            should be saved as the roster and the application should navigate
+            to the <code>/el/classes</code> page.    The &ldquo;Save&rdquo;
+            button should be disabled if the form is pristine.
+          </li>
+          <li>
+            If the user clicks &ldquo;Cancel&rdquo;...
+            <ul>
+              <li>
+                ...and the form is pristine, then navigate to
+                the <code>el/classes</code> page.
+              </li>
+              <li>
+                ...and the form has been touched, then prompt the user to
+                confirm that the edits are to be discarded.  (You may simply
+                use <code>window.confirm</code>.)  If the user confirms, then
+                navigate to the <code>el/classes</code> page.  If the user
+                does not confirm, do nothing.
+              </li>
+            </ul>
+          </li>
+      </li>
+    </ol>
+    <h3>The Starting Project</h3>
+    <p>
+      You may use <a href="proj5_start.zip">my implementation of Project 3</a>
+      as a starting point if you wish.  This project contains a working
+      version of the web services as described in the project description.  I
+      have added a couple of extra features that you may find useful in this
+      project.
+    </p>
+    <p>
+      The first feature is that the service for retrieving all users allows
+      query parameters to limit which users are returned.  For example, the
+      following request would return only users with a role of
+      &ldquo;student&rdquo;.
+    </p>
+    <pre>GET /api/users/?role=student</pre>
+    <p>
+      The second feature is an additional service that allows you to update
+      the entire roster for a class at once instead of one student at a time.
+      The URL is <code>/api/rosters/<var>classid</var>/</code>
+      where <var>classid</var> is either a document id or a department +
+      number.  For example, you could set the entire roster for Comp 431 using
+      the following request:
+    </p>
+    <pre>PUT /api/rosters/comp431/</pre>
+    <p>
+      The third feature is a script to create some inital data.  You can run
+      it with the comand "<code>npm run initdb</code>".  Be aware that this
+      will delete all existing data in your database, so use with caution.
+    </p>
+    <p>
+      The project has been configured to contain an Angular application (as
+      the blank starter project I gave you previously).  However, you will
+      need to make at least two changes to support this application.  The
+      first is that the Angular application is currently served at the
+      URL <code>/app</code>.  You will need to change this
+      to <code>/el</code>.  The second is that it is not configured for
+      Angular routing&mdash;i.e., requests for extended URLs
+      (e.g., <code>/el/classes/comp431</code>) will return a 404.  You will
+      need to change this so that requests for extended urls will return the
+      Angular application.
+    </p>
+    <h3>Hints</h3>
+    <p>
+      You may find it useful to use an object as a dictionary.  You can define
+      that an object allows you to look up arbitrary keys like so:
+      <pre class="brush:js">
+        let dictionary: { [key: string]: ValType }
+      </pre>
+      Here, <var>ValType</var> refers to the type of value you are storing in
+      the dictionary.  (Replace this with your actual type.)  You could also
+      define your own interface:
+      <pre class="brush:js">
+        interface Dictionary&lt;T&gt; {
+            [key: string]: T;
+        }
+
+        let a: Dictionary&lt;string&gt;;
+        let b: Dictionary&lt;number&gt;;
+        // etc.
+      </pre>
+    </p>
+  </body>
+</html>
