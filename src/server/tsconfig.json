@@ -1,8 +1,35 @@
 {
-  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "module": "commonjs",
     "target": "es6",
+    "outDir": "../../lib",
+    "rootDir": "./",
+    "moduleResolution": "node",
+    "module": "commonjs",
+    "strictNullChecks": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": false,
+    "declaration": true,
+    "importHelpers": true,
+    "inlineSourceMap": true,
+    "listFiles": false,
+    "traceResolution": false,
+    "pretty": true,
+    "lib": [
+      "es6",
+      "dom"
+    ],
+    "baseUrl": "../.."
   },
-  "compileOnSave": true
+  "include": [
+    "./**/*.ts"
+  ],
+  "exclude": [
+    "node_modules/**"
+  ],
+  "compileOnSave": false
 }

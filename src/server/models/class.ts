@@ -1,9 +1,9 @@
-import * as mongoose from "mongoose";
-import { User, UserData } from "./user";
-import "./mongodb";
+import * as mongoose from 'mongoose';
+import { User, UserData } from './user';
+import './mongodb';
 
-function twoDaysFromNow(): Date {
-  return new Date(Date.now() + 2*24*60*60*1000);
+function twoDaysFromNow (): Date {
+  return new Date(Date.now() + 2 * 24 * 60 * 60 * 1000);
 }
 
 export interface AssignmentData {
@@ -38,7 +38,7 @@ const AssignmentSchema = new mongoose.Schema({
       obj.due = doc.due.toLocaleString();
       return obj;
     }
-  },
+  }
 });
 
 export interface ClassData {
@@ -67,7 +67,7 @@ const ClassSchema = new mongoose.Schema({
     max: 499,
     validate: {
       validator: (value: number) => value == Math.floor(value),
-      message: "{VALUE} is not an integer"
+      message: '{VALUE} is not an integer'
     },
     required: true
   },
@@ -79,17 +79,17 @@ const ClassSchema = new mongoose.Schema({
   },
   teacher: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+    ref: 'User',
     required: true,
     validate: {
       validator: (id: mongoose.Schema.Types.ObjectId) =>
-        User.findById(id).then(u => u !== null && u.role == "teacher") as any,
-      message: "${VALUE} is not a valid teacher id"
+        User.findById(id).then(u => u !== null && u.role == 'teacher') as any,
+      message: '${VALUE} is not a valid teacher id'
     }
   },
   students: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User"
+    ref: 'User'
   }],
   assignments: [AssignmentSchema]
 }, {
@@ -102,9 +102,9 @@ const ClassSchema = new mongoose.Schema({
       delete obj.__v;
       return obj;
     }
-  },
-})
+  }
+});
 
 ClassSchema.index({ department: 1, number: 1 }, { unique: true });
 
-export const Class = mongoose.model<Class>("Class", ClassSchema);
+export const Class = mongoose.model<Class>('Class', ClassSchema);

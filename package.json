@@ -1,21 +1,31 @@
 {
-  "name": "proj5",
-  "version": "0.0.0",
-  "license": "MIT",
+  "name": "easel-lite",
+  "description": "",
+  "version": "1.0.0",
   "main": "lib/server",
   "scripts": {
-    "ng": "ng",
-    "start": "node lib/server",
-    "start:watch": "nodemon lib/server -i src -i sessions -i dist",
-    "compile": "tsc -p src/server",
-    "build": "ng build --base-href /el/",
-    "build:watch": "ng build --base-href /el/ --watch",
-    "clean:mac": "rm -rf node_modules lib dist sessions",
-    "clean:win": "rd /s /q node_modules lib dist sessions",
-    "lint": "ng lint",
-    "initdb": "node lib/server/initdb"
+    "all:build": "npm run server:build && npm run client:build",
+    "all:dev": "npm run server:dev && npm run client:dev",
+    "server:start": "node lib/server",
+    "server:watch": "nodemon lib/server -i src -i sessions -i dist",
+    "server:build": "tsc -p src/server",
+    "server:dev": "npm run server:watch && nodemon lib/server",
+    "client:build": "ng build --base-href /el/",
+    "client:watch": "ng build --base-href /el/ --watch",
+    "client:dev": "ng serve --base-href /e/ --open",
+    "initdb": "node lib/server/initdb",
+    "heroku-postbuild": "npm run build:server && npm run build:client"
   },
-  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShepherdJerred-homework/easel-lite.git"
+  },
+  "author": "Jerred Shepherd",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/ShepherdJerred-homework/easel-lite/issues"
+  },
+  "homepage": "https://github.com/ShepherdJerred-homework/easel-lite#readme",
   "dependencies": {
     "@angular/animations": "^5.2.0",
     "@angular/common": "^5.2.0",
@@ -26,6 +36,8 @@
     "@angular/platform-browser": "^5.2.0",
     "@angular/platform-browser-dynamic": "^5.2.0",
     "@angular/router": "^5.2.0",
+    "@types/basic-auth": "^1.1.2",
+    "basic-auth": "^2.0.0",
     "core-js": "^2.4.1",
     "express": "^4.16.3",
     "express-handlebars": "^3.0.0",
@@ -35,6 +47,7 @@
     "morgan": "^1.9.0",
     "rxjs": "^5.5.6",
     "session-file-store": "^1.2.0",
+    "tslib": "^1.9.0",
     "zone.js": "^0.8.19"
   },
   "devDependencies": {
@@ -49,8 +62,10 @@
     "@types/morgan": "^1.7.35",
     "@types/node": "^8.10.7",
     "@types/session-file-store": "^1.2.0",
+    "nodemon": "^1.17.3",
     "ts-node": "~4.1.0",
-    "tslint": "~5.9.1",
-    "typescript": "~2.5.3"
+    "tslint": "^5.9.1",
+    "tslint-config-semistandard": "^7.0.0",
+    "typescript": "^2.5.3"
   }
 }
