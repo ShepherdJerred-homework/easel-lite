@@ -21,11 +21,11 @@ export async function updateStudents (req: Request, res: Response) {
   try {
     let locals = res.locals as StudentLocals;
     let klass = await Class.findById(locals.class.id);
-    let userPromises: PromiseLike<User>[] = [ ];
+    let userPromises: PromiseLike<User | null>[] = [];
     if (Array.isArray(req.body)) {
       for (let student of req.body) {
         let id = student.id || student;
-        userPromises.push(User.findById(id, 'firstname lastname role'));
+        userPromises.push(User.findById(id, 'firstname lastname role').exec());
       }
       let students = await Promise.all(userPromises);
       console.log(students);
@@ -34,7 +34,7 @@ export async function updateStudents (req: Request, res: Response) {
         res.json({ status: 400, message: 'Roster must consist solely of students' });
       } else {
         if (klass !== null) {
-          klass.students = students;
+          klass.students = students as User[];
           await klass.save();
           res.json(klass.students);
         } else {

@@ -6,7 +6,7 @@ import * as assignments from './assignments';
 import { requireUser, requireRole } from '../auth';
 import { forceDirectory } from '../util';
 
-export const router = express.Router();
+export const router: express.Router = express.Router();
 
 router.use(requireUser);
 

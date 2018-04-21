@@ -7,7 +7,7 @@ import sessionFileStore = require('session-file-store');
 import * as config from '../config';
 import * as api from './api';
 
-export const app = express();
+export const app: express.Express = express();
 
 // Configure handlebars engine
 app.engine('hb', expressHandlebars({
