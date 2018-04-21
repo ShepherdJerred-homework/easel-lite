@@ -5,9 +5,8 @@
   "main": "lib/server",
   "scripts": {
     "all:build": "npm run server:build && npm run client:build",
-    "all:dev": "npm run server:dev && npm run client:dev",
     "server:start": "node lib/server",
-    "server:watch": "nodemon lib/server -i src -i sessions -i dist",
+    "server:watch": "tsc -w -p src/server",
     "server:build": "tsc -p src/server",
     "server:dev": "npm run server:watch && nodemon lib/server",
     "client:build": "ng build --base-href /el/",
