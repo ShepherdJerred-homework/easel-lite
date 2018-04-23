@@ -37,7 +37,7 @@ app.use(expressSession({
 
 // Custom Middleware
 app.use('/api/', api.router);
-app.use('/app/', express.static('./dist'));
+app.use('/el/', express.static('./lib/client'));
 
 // Static files
 app.use(express.static('./public'));
