@@ -191,3 +191,4 @@ typings/
 *.iml
 .idea/
 lib/
+sessions/
