@@ -5,7 +5,7 @@
             Department
         </label>
         <input class="input" type="text" name="Department" title="Department" [(ngModel)]="classs.department"
-               [minlength]="4" [maxlength]="4" required #department="ngModel" uppercase>
+               [minlength]="4" [maxlength]="4" required #department="ngModel" uppercase [class.is-danger]="department.invalid === true">
         <div *ngIf="department.invalid && (department.dirty || department.touched)" class="help is-danger">
             <div *ngIf="department.errors.required">
                 Department is required
@@ -20,7 +20,7 @@
             Number
         </label>
         <input class="input" type="number" name="Number" title="Number" [(ngModel)]="classs.number" [min]="100"
-               [max]="999" #number="ngModel" required>
+               [max]="999" #number="ngModel" required [class.is-danger]="number.invalid === true">
         <div *ngIf="number.invalid && (number.dirty || number.touched)" class="help is-danger">
             <div *ngIf="number.errors.required">
                 Number is required
@@ -34,7 +34,7 @@
         <label class="label">
             Title
         </label>
-        <input class="input" type="text" name="Title" title="Title" [(ngModel)]="classs.title" [maxlength]="200" required #title="ngModel">
+        <input class="input" type="text" name="Title" title="Title" [(ngModel)]="classs.title" [maxlength]="200" required #title="ngModel" [class.is-danger]="title.invalid === true" appTrim>
         <div *ngIf="title.invalid && (title.dirty || title.touched)" class="help is-danger">
             <div *ngIf="title.errors.required">
                 Title is required
@@ -42,7 +42,9 @@
             <div *ngIf="title.errors.maxlength">
                 Title cannot be longer than 200 characters
             </div>
-            <!-- TODO check trailing and leading whitespace -->
+            <div *ngIf="title.errors.trim">
+                Title should not have leading or trailing whitespace
+            </div>
         </div>
     </div>
     <div class="field">
@@ -51,7 +53,7 @@
         </label>
         <div class="control">
             <div class="select">
-                <select name="Teacher" title="User" [(ngModel)]="classs.teacher.id" required #teacher="ngModel">
+                <select name="Teacher" title="User" [(ngModel)]="classs.teacher.id" required #teacher="ngModel" [class.is-danger]="teacher.invalid === true">
                     <option *ngFor="let teacher of teachers" [value]="teacher.id">{{ teacher.firstname }} {{
                         teacher.lastname }}
                     </option>

@@ -18,6 +18,7 @@ import { MaxDirective } from './directives/MaxDirective';
 
 import { ClassService } from './services/class.service';
 import { UserService } from './services/user.service';
+import { TrimDirective } from './directives/TrimDirective';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { UserService } from './services/user.service';
     ClassRosterComponent,
     UppercaseDirective,
     MinDirective,
-    MaxDirective
+    MaxDirective,
+    TrimDirective
   ],
   imports: [
     BrowserModule,
