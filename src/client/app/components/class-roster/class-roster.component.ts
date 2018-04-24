@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'el-class-roster',
   templateUrl: './class-roster.component.html',
-  styleUrls: ['./class-roster.component.css']
+  styleUrls: []
 })
 export class ClassRosterComponent implements OnInit {
 

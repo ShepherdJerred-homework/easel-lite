@@ -1,0 +1,80 @@
+<h1 class="title is-1">Class Details</h1>
+<form #classForm="ngForm" (ngSubmit)="onSave()">
+    <div class="field">
+        <label class="label">
+            Department
+        </label>
+        <!-- TODO convert to uppercase -->
+        <input class="input" type="text" name="Department" title="Department" [(ngModel)]="classs.department"
+               [minlength]="4" [maxlength]="4" required #department="ngModel">
+        <div *ngIf="department.invalid && (department.dirty || department.touched)" class="help is-danger">
+            <div *ngIf="department.errors.required">
+                Department is required
+            </div>
+            <div *ngIf="department.errors.minlength || department.errors.maxlength">
+                Department must be 4 characters long
+            </div>
+        </div>
+    </div>
+    <div class="field">
+        <label class="label">
+            Number
+        </label>
+        <input class="input" type="number" name="Number" title="Number" [(ngModel)]="classs.number" [min]="100"
+               [max]="999" #number="ngModel" required>
+        <div *ngIf="number.invalid && (number.dirty || number.touched)" class="help is-danger">
+            <div *ngIf="number.errors.required">
+                Number is required
+            </div>
+            <!-- TODO write custom validator so this actually appears -->
+            <div *ngIf="number.errors.min || number.errors.max">
+                Number must be from 100-999
+            </div>
+        </div>
+    </div>
+    <div class="field">
+        <label class="label">
+            Title
+        </label>
+        <input class="input" type="text" name="Title" title="Title" [(ngModel)]="classs.title" [maxlength]="200" required #title="ngModel">
+        <div *ngIf="title.invalid && (title.dirty || title.touched)" class="help is-danger">
+            <div *ngIf="title.errors.required">
+                Title is required
+            </div>
+            <div *ngIf="title.errors.maxlength">
+                Title cannot be longer than 200 characters
+            </div>
+            <!-- TODO check trailing and leading whitespace -->
+        </div>
+    </div>
+    <div class="field">
+        <label class="label">
+            User
+        </label>
+        <div class="control">
+            <div class="select">
+                <select name="Teacher" title="User" [(ngModel)]="classs.teacher.id" required #teacher="ngModel">
+                    <option *ngFor="let teacher of teachers" [value]="teacher.id">{{ teacher.firstname }} {{
+                        teacher.lastname }}
+                    </option>
+                </select>
+                <div *ngIf="teacher.invalid && (teacher.dirty || teacher.touched)" class="help is-danger">
+                    <div *ngIf="teacher.errors.required">
+                        Teacher is required
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="field is-grouped">
+        <div class="control">
+            <input type="submit" class="button is-link" value="Save" [disabled]="classForm.form.pristine">
+        </div>
+        <div class="control">
+            <button class="button is-danger" type="button" (click)="onDelete()">Delete</button>
+        </div>
+        <div class="control">
+            <button class="button is-text" type="button" (click)="onCancel()">Cancel</button>
+        </div>
+    </div>
+</form>
