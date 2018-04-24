@@ -26,7 +26,8 @@
     "baseUrl": "../.."
   },
   "include": [
-    "./**/*.ts"
+    "./**/*.ts",
+    "../../node_modules/@types/node/index.d.ts"
   ],
   "exclude": [
     "node_modules/**"
