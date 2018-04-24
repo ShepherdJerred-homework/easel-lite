@@ -1,7 +1,7 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -11,8 +11,9 @@ import { ClassListComponent } from './components/class-list/class-list.component
 import { ClassDetailsComponent } from './components/class-details/class-details.component';
 import { CreateClassComponent } from './components/create-class/create-class.component';
 import { ClassRosterComponent } from './components/class-roster/class-roster.component';
+
 import { ClassService } from './services/class.service';
-import { TeacherService } from './services/teacher.service';
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { TeacherService } from './services/teacher.service';
   ],
   providers: [
     ClassService,
-    TeacherService
+    UserService
   ],
   bootstrap: [AppComponent]
 })

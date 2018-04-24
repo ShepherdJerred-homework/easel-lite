@@ -1,12 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ClassService } from '../../services/class.service';
-import { Class } from '../../models/Class';
 import { Router, ActivatedRoute } from '@angular/router';
-import { TeacherService } from '../../services/teacher.service';
-import { User } from '../../models/User';
 import { NgForm } from '@angular/forms';
 
-// TODO don't bind model until data is loaded from service
+import { Class } from '../../models/Class';
+import { User } from '../../models/User';
+
+import { ClassService } from '../../services/class.service';
+import { UserService } from '../../services/user.service';
+
 @Component({
   selector: 'el-class-details',
   templateUrl: './class-details.component.html',
@@ -18,26 +19,12 @@ export class ClassDetailsComponent implements OnInit {
   classs: Class;
   teachers: User[];
 
-  constructor (private classService: ClassService, private teacherService: TeacherService, private route: ActivatedRoute, private router: Router) {
+  constructor (private classService: ClassService, private teacherService: UserService, private route: ActivatedRoute, private router: Router) {
   }
 
   ngOnInit () {
-    this.route.params.subscribe((params) => {
-      this.getClass(params['name']);
-    });
-    this.getTeachers();
-  }
-
-  getClass (name: string): void {
-    this.classService.getClass(name).subscribe(classs => {
-      this.classs = classs;
-    });
-  }
-
-  getTeachers (): void {
-    this.teacherService.getTeachers().subscribe(teachers => {
-      this.teachers = teachers;
-    });
+    this.classs = this.route.snapshot.data.classs;
+    this.teachers = this.route.snapshot.data.teachers;
   }
 
   hasChanged (): boolean {
@@ -67,7 +54,6 @@ export class ClassDetailsComponent implements OnInit {
 
   navigateToClasses (): void {
     this.router.navigateByUrl('/classes');
-
   }
 
 }
