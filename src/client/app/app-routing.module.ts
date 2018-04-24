@@ -37,7 +37,10 @@ const routes: Routes = [
   {
     path: 'new-class',
     pathMatch: 'full',
-    component: CreateClassComponent
+    component: CreateClassComponent,
+    resolve: {
+      teachers: TeacherResolver
+    }
   },
   {
     path: '',
