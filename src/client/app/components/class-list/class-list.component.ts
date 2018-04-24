@@ -22,7 +22,6 @@ export class ClassListComponent implements OnInit {
   getClasses (): void {
     this.classService.getClasses().subscribe(classes => {
       this.classes = classes;
-      console.log(this.classes);
     });
   }
 

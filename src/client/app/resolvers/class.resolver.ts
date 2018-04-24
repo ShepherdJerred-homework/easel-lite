@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Resolve } from '@angular/router';
+import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
@@ -23,7 +23,7 @@ export class ClassDetailsResolver implements Resolve<Observable<Class>> {
   constructor (private classService: ClassService) {
   }
 
-  resolve () {
-    return this.classService.getClass('COMP336');
+  resolve (route: ActivatedRouteSnapshot) {
+    return this.classService.getClass(route.paramMap.get('name'));
   }
 }
