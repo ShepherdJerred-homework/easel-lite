@@ -9,6 +9,7 @@ import { CreateClassComponent } from './components/create-class/create-class.com
 
 import { TeacherResolver } from './resolvers/user.resolver';
 import { ClassDetailsResolver, ClassListResolver } from './resolvers/class.resolver';
+import { ServerErrorComponent } from './components/server-error/server-error.component';
 
 const routes: Routes = [
   {
@@ -42,6 +43,10 @@ const routes: Routes = [
     path: '',
     pathMatch: 'full',
     redirectTo: 'classes'
+  },
+  {
+    path: 'error',
+    component: ServerErrorComponent
   },
   {
     path: '**',

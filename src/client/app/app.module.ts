@@ -11,6 +11,9 @@ import { ClassListComponent } from './components/class-list/class-list.component
 import { ClassDetailsComponent } from './components/class-details/class-details.component';
 import { CreateClassComponent } from './components/create-class/create-class.component';
 import { ClassRosterComponent } from './components/class-roster/class-roster.component';
+import { ServerErrorComponent } from './components/server-error/server-error.component';
+import { ContainerComponent } from './components/container/container.component';
+import { NavigationComponent } from './components/navigation/navigation.component';
 
 import { UppercaseDirective } from './directives/UppercaseDirective';
 import { MinDirective } from './directives/MinDirective';
@@ -29,6 +32,9 @@ import { TrimDirective } from './directives/TrimDirective';
     CreateClassComponent,
     ClassRosterComponent,
     UppercaseDirective,
+    ServerErrorComponent,
+    ContainerComponent,
+    NavigationComponent,
     MinDirective,
     MaxDirective,
     TrimDirective
