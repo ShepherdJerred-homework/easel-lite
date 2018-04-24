@@ -246,5 +246,5 @@ async function initdb () {
 }
 
 initdb().then(() => {
-  return;
+  process.exit();
 });
