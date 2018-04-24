@@ -1,6 +1,6 @@
 
 // Port server should listen on
-export let serverPort = 8080;
+export let serverPort = process.env.PORT || 8000;
 
 // Secret for express-session
 export let sessionSecret = 'bunnyslippers';
