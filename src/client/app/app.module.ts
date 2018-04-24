@@ -18,10 +18,11 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { UppercaseDirective } from './directives/UppercaseDirective';
 import { MinDirective } from './directives/MinDirective';
 import { MaxDirective } from './directives/MaxDirective';
+import { TrimDirective } from './directives/TrimDirective';
 
 import { ClassService } from './services/class.service';
 import { UserService } from './services/user.service';
-import { TrimDirective } from './directives/TrimDirective';
+import { RosterService } from './services/roster.service';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { TrimDirective } from './directives/TrimDirective';
   ],
   providers: [
     ClassService,
-    UserService
+    UserService,
+    RosterService
   ],
   bootstrap: [AppComponent]
 })

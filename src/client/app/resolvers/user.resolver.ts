@@ -23,3 +23,18 @@ export class TeacherResolver implements Resolve<Observable<User[]>> {
     });
   }
 }
+
+@Injectable()
+export class StudentResolver implements Resolve<Observable<User[]>> {
+
+  constructor (private userService: UserService, private router: Router) {
+  }
+
+  resolve () {
+    return this.userService.getStudents().catch(err => {
+      console.log(err);
+      this.router.navigateByUrl('/error');
+      return Observable.of(null);
+    });
+  }
+}

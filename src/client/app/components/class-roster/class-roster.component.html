@@ -1,3 +1,26 @@
 <el-container>
     <h1 class="title is-1">Class Roster</h1>
+    <form #rosterForm="ngForm" (ngSubmit)="onSave()">
+        <div class="field">
+            <div class="control">
+                <table>
+                    <tr *ngFor="let s of roster">
+                        <td>
+                            <label class="checkbox">
+                                <input type="checkbox" value="{{ s.student.id }}" [(ngModel)]="s.status" name="{{ s.student.firstname }}"> {{ s.student.firstname + ' ' + s.student.lastname}}
+                            </label>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="field is-grouped">
+            <div class="control">
+                <input type="submit" class="button is-link" value="Save" [disabled]="rosterForm.form.pristine || rosterForm.form.invalid">
+            </div>
+            <div class="control">
+                <button class="button is-text" type="button" (click)="onCancel()">Cancel</button>
+            </div>
+        </div>
+    </form>
 </el-container>

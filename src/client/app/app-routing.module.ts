@@ -6,10 +6,11 @@ import { ClassDetailsComponent } from './components/class-details/class-details.
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ClassRosterComponent } from './components/class-roster/class-roster.component';
 import { CreateClassComponent } from './components/create-class/create-class.component';
-
-import { TeacherResolver } from './resolvers/user.resolver';
-import { ClassDetailsResolver, ClassListResolver } from './resolvers/class.resolver';
 import { ServerErrorComponent } from './components/server-error/server-error.component';
+
+import { StudentResolver, TeacherResolver } from './resolvers/user.resolver';
+import { ClassDetailsResolver, ClassListResolver } from './resolvers/class.resolver';
+import { RosterResolver } from './resolvers/roster.resolver';
 
 const routes: Routes = [
   {
@@ -32,7 +33,11 @@ const routes: Routes = [
   {
     path: 'rosters/:name',
     pathMatch: 'full',
-    component: ClassRosterComponent
+    component: ClassRosterComponent,
+    resolve: {
+      students: StudentResolver,
+      roster: RosterResolver
+    }
   },
   {
     path: 'new-class',
@@ -67,7 +72,9 @@ const routes: Routes = [
   providers: [
     ClassListResolver,
     ClassDetailsResolver,
-    TeacherResolver
+    TeacherResolver,
+    StudentResolver,
+    RosterResolver
   ]
 })
 export class AppRoutingModule {
