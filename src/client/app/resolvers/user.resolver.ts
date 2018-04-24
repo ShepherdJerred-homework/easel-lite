@@ -9,7 +9,7 @@ import { UserService } from '../services/user.service';
 import { User } from '../models/User';
 
 @Injectable()
-export class TeacherResolver implements Resolve<Observable<User>> {
+export class TeacherResolver implements Resolve<Observable<User[]>> {
 
   constructor (private userService: UserService) {
   }
