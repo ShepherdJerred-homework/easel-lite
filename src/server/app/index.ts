@@ -25,5 +25,8 @@ app.use(expressSession({
 
 app.use('/api/', api.router);
 app.use('/el/', express.static('./lib/client'));
+app.use('/el/*', (req, res) => {
+  res.sendFile('index.html', { root: './lib/client' });
+});
 
 app.use(express.static('./public'));
