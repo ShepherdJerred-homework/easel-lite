@@ -1,21 +1,2 @@
-<nav class="navbar is-light">
-    <div class="navbar-brand">
-        <a class="navbar-item" href="/">Easel Lite</a>
-    </div>
-
-    <div class="navbar-menu">
-        <div class="navbar-end">
-            <a class="navbar-item" routerLink="/classes" routerLinkActive="is-active" [routerLinkActiveOptions]="{ exact: true }">Class List</a>
-        </div>
-    </div>
-</nav>
-
-<section class="section">
-    <div class="container">
-        <div class="columns">
-            <div class="column is-8 is-offset-2">
-                <router-outlet></router-outlet>
-            </div>
-        </div>
-    </div>
-</section>
+<el-navigation></el-navigation>
+<router-outlet></router-outlet>
