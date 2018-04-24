@@ -4,9 +4,8 @@
         <label class="label">
             Department
         </label>
-        <!-- TODO convert to uppercase -->
         <input class="input" type="text" name="Department" title="Department" [(ngModel)]="classs.department"
-               [minlength]="4" [maxlength]="4" required #department="ngModel">
+               [minlength]="4" [maxlength]="4" required #department="ngModel" uppercase>
         <div *ngIf="department.invalid && (department.dirty || department.touched)" class="help is-danger">
             <div *ngIf="department.errors.required">
                 Department is required

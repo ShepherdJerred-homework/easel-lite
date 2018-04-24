@@ -12,6 +12,10 @@ import { ClassDetailsComponent } from './components/class-details/class-details.
 import { CreateClassComponent } from './components/create-class/create-class.component';
 import { ClassRosterComponent } from './components/class-roster/class-roster.component';
 
+import { UppercaseDirective } from './directives/UppercaseDirective';
+import { MinDirective } from './directives/MinDirective';
+import { MaxDirective } from './directives/MaxDirective';
+
 import { ClassService } from './services/class.service';
 import { UserService } from './services/user.service';
 
@@ -22,7 +26,10 @@ import { UserService } from './services/user.service';
     ClassListComponent,
     ClassDetailsComponent,
     CreateClassComponent,
-    ClassRosterComponent
+    ClassRosterComponent,
+    UppercaseDirective,
+    MinDirective,
+    MaxDirective
   ],
   imports: [
     BrowserModule,
