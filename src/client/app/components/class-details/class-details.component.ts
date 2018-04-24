@@ -32,14 +32,16 @@ export class ClassDetailsComponent implements OnInit {
   }
 
   onSave (): void {
-    // TODO contact service
-    this.navigateToClasses();
+    this.classService.updateClass(this.classs).subscribe((classs) => {
+      this.navigateToClasses();
+    });
   }
 
   onDelete (): void {
     if (window.confirm('Are you sure you want to delete ' + this.classs.title + '?')) {
-      // TODO contact service
-      this.navigateToClasses();
+      this.classService.deleteClass(this.classs).subscribe((classs) => {
+        this.navigateToClasses();
+      });
     }
   }
 
