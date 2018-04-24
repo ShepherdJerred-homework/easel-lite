@@ -5,5 +5,5 @@ export class Class {
   id: string;
   number: number;
   title: string;
-  teacher: User;
+  teacher: User | string;
 }
