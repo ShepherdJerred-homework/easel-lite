@@ -1,11 +1,13 @@
-<h1 class="title">Class List</h1>
-<table class="table is-fullwidth is-hoverable">
-    <tr *ngFor="let c of classes">
-        <td>{{ c.department }}</td>
-        <td>{{ c.number }}</td>
-        <td>{{ c.title }}</td>
-        <td><a routerLink="/classes/{{ c.department + c.number | lowercase }}">Details</a></td>
-        <td><a routerLink="/rosters/{{ c.department + c.number | lowercase }}">Roster</a></td>
-    </tr>
-</table>
-<a class="button is-primary" routerLink="/new-class">Create Class</a>
+<el-container>
+    <h1 class="title">Class List</h1>
+    <table class="table is-fullwidth is-hoverable">
+        <tr *ngFor="let c of classes">
+            <td>{{ c.department }}</td>
+            <td>{{ c.number }}</td>
+            <td>{{ c.title }}</td>
+            <td><a routerLink="/classes/{{ c.department + c.number | lowercase }}">Details</a></td>
+            <td><a routerLink="/rosters/{{ c.department + c.number | lowercase }}">Roster</a></td>
+        </tr>
+    </table>
+    <a class="button is-primary" routerLink="/new-class">Create Class</a>
+</el-container>
