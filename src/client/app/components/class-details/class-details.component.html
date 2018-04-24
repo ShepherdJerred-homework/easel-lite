@@ -25,7 +25,6 @@
             <div *ngIf="number.errors.required">
                 Number is required
             </div>
-            <!-- TODO write custom validator so this actually appears -->
             <div *ngIf="number.errors.min || number.errors.max">
                 Number must be from 100-999
             </div>
@@ -67,7 +66,7 @@
     </div>
     <div class="field is-grouped">
         <div class="control">
-            <input type="submit" class="button is-link" value="Save" [disabled]="classForm.form.pristine">
+            <input type="submit" class="button is-link" value="Save" [disabled]="classForm.form.pristine || classForm.form.invalid">
         </div>
         <div class="control">
             <button class="button is-danger" type="button" (click)="onDelete()">Delete</button>
