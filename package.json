@@ -13,7 +13,7 @@
     "client:watch": "ng build --base-href /el/ --watch",
     "client:dev": "ng serve --base-href /e/ --open",
     "initdb": "node lib/server/initdb",
-    "heroku-postbuild": "npm run build:server && npm run build:client"
+    "heroku-postbuild": "npm run server:build && npm run initdb && npm run client:build"
   },
   "repository": {
     "type": "git",
