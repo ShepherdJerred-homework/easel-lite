@@ -32,14 +32,14 @@ export class ClassDetailsComponent implements OnInit {
   }
 
   onSave (): void {
-    this.classService.updateClass(this.classs).subscribe((classs) => {
+    this.classService.updateClass(this.classs).subscribe(classs => {
       this.navigateToClasses();
     });
   }
 
   onDelete (): void {
     if (window.confirm('Are you sure you want to delete ' + this.classs.title + '?')) {
-      this.classService.deleteClass(this.classs).subscribe((classs) => {
+      this.classService.deleteClass(this.classs).subscribe(classs => {
         this.navigateToClasses();
       });
     }
