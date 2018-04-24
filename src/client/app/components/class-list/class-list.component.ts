@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ClassService } from '../../services/class.service';
 import { Class } from '../../models/Class';
+import { ActivatedRoute } from '@angular/router';
 
 // TODO sort by department then by number
 @Component({
@@ -12,17 +13,10 @@ export class ClassListComponent implements OnInit {
 
   classes: Class[];
 
-  constructor (private classService: ClassService) {
+  constructor (private classService: ClassService, private route: ActivatedRoute) {
   }
 
   ngOnInit () {
-    this.getClasses();
+    this.classes = this.route.snapshot.data.classes;
   }
-
-  getClasses (): void {
-    this.classService.getClasses().subscribe(classes => {
-      this.classes = classes;
-    });
-  }
-
 }
